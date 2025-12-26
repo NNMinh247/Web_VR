@@ -4,14 +4,10 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./CampusShowcase.css";
-
-// --- THƯ VIỆN 3D ---
 import { Canvas, useThree } from "@react-three/fiber";
 import { useGLTF, Stage, Html, useProgress, OrbitControls } from "@react-three/drei";
-
 import { apiUrl, publicUrl } from "../../config/api";
 
-// --- LOADER ---
 function Loader() {
   const { progress } = useProgress();
   return (
@@ -23,7 +19,6 @@ function Loader() {
   );
 }
 
-// --- FIX LAYOUT ---
 function FixLayout() {
   const { gl, camera, invalidate } = useThree();
   useEffect(() => {
@@ -54,13 +49,11 @@ function FixLayout() {
   return null;
 }
 
-// --- MODEL 3D ---
 function Model3D({ url }) {
   const { scene } = useGLTF(url);
   return <primitive object={scene} />;
 }
 
-// --- COMPONENT MODAL CHI TIẾT ---
 const CampusModal = ({ campus, onClose }) => {
   const navigate = useNavigate();
 
@@ -89,7 +82,6 @@ const CampusModal = ({ campus, onClose }) => {
         </button>
 
         <div className="modal-body">
-          {/* CỘT TRÁI: 3D MODEL XOAY */}
           <div className="modal-left">
             <Canvas dpr={1} camera={{ fov: 45 }} frameloop="always">
               <FixLayout />
@@ -115,14 +107,12 @@ const CampusModal = ({ campus, onClose }) => {
             </p>
           </div>
 
-          {/* CỘT PHẢI: THÔNG TIN */}
           <div className="modal-right">
             <h2 className="modal-title">{campus.name}</h2>
             <div className="modal-divider"></div>
             <p className="modal-desc">{campus.description}</p>
 
             <div className="modal-actions">
-              {/* Button đã được làm đẹp */}
               <button className="btn-3d-action" onClick={handleView3D}>
                 <i className="bi bi-controller"></i> BẮT ĐẦU THAM QUAN
               </button>
@@ -137,7 +127,6 @@ const CampusModal = ({ campus, onClose }) => {
   );
 };
 
-// --- COMPONENT CHÍNH (SLIDER ẢNH) ---
 function CampusShowcase() {
   const [campuses, setCampuses] = useState([]);
   const [selectedCampus, setSelectedCampus] = useState(null);

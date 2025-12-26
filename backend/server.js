@@ -2,37 +2,31 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 require("dotenv").config();
-const db = require("./db"); // Đảm bảo file db.js của bạn cấu hình đúng
+const db = require("./db");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-// Bỏ body-parser nếu dùng Express > 4.16 (Express đã tích hợp sẵn)
-// const bodyParser = require("body-parser"); 
 const multer = require('multer');
 const fs = require('fs');
 const nodemailer = require('nodemailer');
 
-// Cấu hình upload file (Lưu vào RAM trước khi ghi xuống đĩa)
 const upload = multer({ storage: multer.memoryStorage() });
 
-// Cấu hình gửi mail
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: process.env.EMAIL_USER, // Lấy từ .env
-    pass: process.env.EMAIL_PASS  // Lấy từ .env
+    user: process.env.EMAIL_USER, 
+    pass: process.env.EMAIL_PASS 
   }
 });
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true })); // Thay thế body-parser
+app.use(express.urlencoded({ extended: true }));
 
 app.use("/public", express.static(path.join(__dirname, "public")));
 
-// --- CẤU HÌNH GEMINI ---
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-// Lưu ý: Dùng model gemini-1.5-flash để ổn định hơn (2.5 có thể chưa public rộng rãi)
 const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
 const SYSTEM_INSTRUCTION = `
@@ -46,7 +40,6 @@ Dữ liệu khác: lấy từ Website: ptit.edu.vn.
 Nếu câu hỏi không liên quan đến trường học, hãy từ chối lịch sự.
 `;
 
-// API Chatbot
 app.post("/api/chat", async (req, res) => {
   const { message } = req.body;
   if (!message) return res.status(400).json({ error: "Tin nhắn trống" });
@@ -76,7 +69,6 @@ app.post("/api/chat", async (req, res) => {
   }
 });
 
-// Các API lấy dữ liệu trang chủ
 app.get("/api/intro", (req, res) => {
   const sql = "SELECT * FROM intro_slides ORDER BY display_order ASC";
   db.query(sql, (err, results) => {
@@ -117,16 +109,12 @@ app.get("/api/campus", (req, res) => {
   });
 });
 
-// ==========================================
-// --- API TUYỂN SINH (ĐÃ SỬA LỖI MAIL) ---
-// ==========================================
 app.post("/api/admission", upload.array('files'), async (req, res) => {
   console.log("📩 Nhận hồ sơ mới từ:", req.body.full_name);
 
   const { full_name, birth_date, gender, address, cccd, major } = req.body;
   const files = req.files;
 
-  // 1. Lưu vào Database
   const sql = "INSERT INTO admissions (full_name, birth_date, gender, address, cccd, major) VALUES (?, ?, ?, ?, ?, ?)";
   
   db.query(sql, [full_name, birth_date, gender, address, cccd, major], async (err, result) => {
@@ -139,18 +127,15 @@ app.post("/api/admission", upload.array('files'), async (req, res) => {
     let attachmentsForEmail = []; 
 
     try {
-      // 2. Lưu file vào folder server
       const baseDir = path.join(__dirname, 'public', 'user');
       if (!fs.existsSync(baseDir)) fs.mkdirSync(baseDir, { recursive: true });
 
       const userFolder = path.join(baseDir, `admission_${admissionId}`);
       if (!fs.existsSync(userFolder)) fs.mkdirSync(userFolder);
 
-      // Lưu file JSON thông tin
       const infoData = { ...req.body, id: admissionId, submitted_at: new Date().toLocaleString('vi-VN') };
       fs.writeFileSync(path.join(userFolder, 'info.json'), JSON.stringify(infoData, null, 2), 'utf8');
 
-      // Lưu ảnh & chuẩn bị file đính kèm
       if (files && files.length > 0) {
         files.forEach((file, index) => {
           const ext = path.extname(file.originalname) || ".jpg";
@@ -166,12 +151,9 @@ app.post("/api/admission", upload.array('files'), async (req, res) => {
         });
       }
 
-      // 3. --- GỬI EMAIL (CODE ĐÃ SỬA) ---
       const mailOptions = {
-        // SỬA: Dùng template string `${}` để lấy giá trị biến, KHÔNG dùng dấu ngoặc đơn bao quanh biến
         from: `"PTIT Admission System" <${process.env.EMAIL_USER}>`, 
         
-        // Gửi cho chính email trong .env để test (hoặc bạn có thể hardcode email khác)
         to: process.env.EMAIL_USER, 
         
         subject: `[Hồ sơ Tuyển sinh] Ứng viên ${full_name} - Mã: ${admissionId}`,

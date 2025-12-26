@@ -1,4 +1,3 @@
-/* --- SECTION CHÍNH --- */
 .campus-section {
   padding: 60px 20px;
   background: #f8f9fa;
@@ -27,7 +26,6 @@
   padding-bottom: 40px;
 }
 
-/* --- CARD TRONG SLIDER --- */
 .campus-card-padding {
   padding: 15px;
 }
@@ -108,7 +106,6 @@
   text-transform: uppercase;
 }
 
-/* --- MODAL (POPUP) CHI TIẾT --- */
 .campus-modal-overlay {
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
@@ -167,7 +164,6 @@
   height: 100%;
 }
 
-/* === CỘT TRÁI: 3D === */
 .modal-left {
   flex: 1.2;
   background: radial-gradient(circle at center, #ffffff 0%, #e0e0e0 100%);
@@ -190,7 +186,6 @@
   display: flex; align-items: center; gap: 8px;
 }
 
-/* Cột Phải: Thông tin */
 .modal-right {
   flex: 0.8;
   padding: 50px;
@@ -221,7 +216,6 @@
   text-align: justify;
 }
 
-/* --- BUTTON ĐẸP --- */
 .modal-actions {
   display: flex;
   gap: 20px;
@@ -243,7 +237,6 @@
   letter-spacing: 0.5px;
 }
 
-/* Nút Tham quan 3D */
 .btn-3d-action {
   background: linear-gradient(135deg, #c90000, #ff3333);
   color: white;
@@ -256,7 +249,6 @@
   filter: brightness(1.1);
 }
 
-/* Nút VR */
 .btn-vr-action {
   background: linear-gradient(135deg, #2c3e50, #4ca1af);
   color: white;
@@ -269,7 +261,6 @@
   filter: brightness(1.1);
 }
 
-/* RESPONSIVE */
 @media (max-width: 992px) {
   .modal-body { flex-direction: column; }
   .campus-modal-content { height: 95vh; overflow-y: auto; width: 95%; }

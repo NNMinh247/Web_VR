@@ -1,18 +1,17 @@
 .footer-container {
   background-color: #fff;
-  padding: 40px 20px 20px; /* Padding trên dưới trái phải */
+  padding: 40px 20px 20px;
   text-align: center;
   position: relative;
   width: 100%;
 }
 
-/* Đường kẻ ngang phía trên giống ảnh mẫu */
 .footer-line {
   width: 100%;
   height: 1px;
-  background-color: #e0e0e0; /* Màu xám nhạt */
+  background-color: #e0e0e0;
   margin-bottom: 30px;
-  max-width: 1200px; /* Giới hạn chiều rộng nếu muốn nó không dài hết màn hình */
+  max-width: 1200px; 
   margin-left: auto;
   margin-right: auto;
 }
@@ -24,18 +23,16 @@
   gap: 15px;
 }
 
-/* Container chứa các icon */
 .social-icons {
   display: flex;
   justify-content: center;
-  gap: 25px; /* Khoảng cách giữa các icon */
+  gap: 25px; 
   margin-bottom: 10px;
 }
 
-/* Style cho từng icon */
 .icon-link {
-  color: #333; /* Màu đen mặc định */
-  font-size: 1.8rem; /* Kích thước icon */
+  color: #333;
+  font-size: 1.8rem; 
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
@@ -45,27 +42,23 @@
   border-radius: 5px;
 }
 
-/* Hiệu ứng khi di chuột vào icon */
 .icon-link:hover {
-  transform: translateY(-3px); /* Nổi lên nhẹ */
+  transform: translateY(-3px); 
 }
 
-/* Màu riêng cho từng mạng xã hội khi hover */
 .icon-link:hover .bi-youtube { color: #ff0000; }
 .icon-link:hover .bi-facebook { color: #1877f2; }
 .icon-link:hover .bi-envelope-fill { color: #ea4335; }
 
-/* Dòng chữ bản quyền */
 .footer-copyright p {
   font-size: 0.9rem;
   color: #666;
   font-weight: 500;
   margin: 0;
-  text-transform: uppercase; /* Chữ in hoa */
-  letter-spacing: 1px; /* Giãn chữ nhẹ */
+  text-transform: uppercase; 
+  letter-spacing: 1px; 
 }
 
-/* Mobile Responsive */
 @media (max-width: 768px) {
   .footer-container {
     padding: 30px 15px 15px;

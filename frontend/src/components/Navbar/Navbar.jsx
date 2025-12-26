@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import logo from "../../assets/images/logo.png"
-// Stable nav list (prevents useEffect deps from changing every render)
 const NAV_ITEMS = [
   { id: "home", label: "Giới thiệu" },
   { id: "history", label: "Lịch sử" },
@@ -15,11 +14,9 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = useState("home");
   const [scrolled, setScrolled] = useState(false);
 
-  // Xử lý sự kiện click để cuộn mượt
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      // Trừ đi 80px chiều cao của navbar để không bị che mất nội dung
       const offsetTop = element.offsetTop - 80;
       window.scrollTo({
         top: offsetTop,
@@ -31,17 +28,14 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // 1. Hiệu ứng đổi màu nền navbar khi cuộn xuống
       if (window.scrollY > 50) {
         setScrolled(true);
       } else {
         setScrolled(false);
       }
 
-      // 2. Logic Scroll Spy (Tự động active menu)
       const sections = NAV_ITEMS.map((item) => document.getElementById(item.id));
-      const scrollPosition = window.scrollY + 100; // +100 để trigger sớm hơn chút
-
+      const scrollPosition = window.scrollY + 100; 
       for (const section of sections) {
         if (
           section &&
@@ -60,12 +54,10 @@ const Navbar = () => {
   return (
     <nav className={`custom-navbar ${scrolled ? "scrolled" : ""}`}>
       <div className="nav-container">
-        {/* Logo hoặc Tên trường */}
         <div className="nav-logo" onClick={() => scrollToSection("home")}>
           <img src={logo} alt="PTIT Logo" className="navbar-logo" /> P-TOUR
         </div>
 
-        {/* Menu Items */}
         <ul className="nav-menu">
           {NAV_ITEMS.map((item) => (
             <li key={item.id} className="nav-item">

@@ -1,10 +1,9 @@
 .partners-section {
   background: #ffffff;
   padding: 80px 0;
-  overflow: hidden; /* Ẩn phần chạy ra ngoài màn hình */
+  overflow: hidden;
 }
 
-/* Header giống ảnh mẫu */
 .partners-header {
   text-align: center;
   margin-bottom: 50px;
@@ -22,7 +21,7 @@
 
 .partners-header h2 {
   font-size: 2.5rem;
-  color: #002855; /* Màu xanh đậm doanh nghiệp */
+  color: #002855; 
   font-weight: 800;
   text-transform: uppercase;
   margin: 0;
@@ -35,11 +34,10 @@
   margin: 15px auto 0;
 }
 
-/* === MARQUEE CONTAINER === */
 .partners-marquee-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 40px; /* Khoảng cách giữa 2 hàng */
+  gap: 40px;
 }
 
 .marquee-track {
@@ -47,23 +45,21 @@
   overflow: hidden;
   position: relative;
   display: flex;
-  /* Hiệu ứng mờ 2 bên cạnh để trông mượt hơn */
   mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
 .marquee-content {
   display: flex;
-  gap: 60px; /* Khoảng cách giữa các logo */
-  width: max-content; /* Để nội dung dài vô tận */
+  gap: 60px; 
+  width: max-content; 
 }
 
-/* Định nghĩa item logo */
 .partner-item {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 180px; /* Kích thước vùng chứa logo */
+  width: 180px;
   height: 100px;
   transition: transform 0.3s;
 }
@@ -75,27 +71,22 @@
   transition: all 0.4s ease;
 }
 
-/* Hover vào thì hiện màu gốc */
 .partner-item:hover img {
   filter: grayscale(0%) opacity(1);
   transform: scale(1.1);
 }
 
-/* === KEYFRAMES ANIMATION === */
-
-/* Chạy sang trái */
 .scroll-left {
   animation: scrollLeft 30s linear infinite;
 }
 
-/* Chạy sang phải */
 .scroll-right {
   animation: scrollRight 30s linear infinite;
 }
 
 @keyframes scrollLeft {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); } /* Dịch chuyển 1 nửa độ dài (do ta nhân đôi list) */
+  100% { transform: translateX(-50%); }
 }
 
 @keyframes scrollRight {
@@ -103,12 +94,10 @@
   100% { transform: translateX(0); }
 }
 
-/* Tạm dừng khi di chuột vào hàng để người dùng dễ bấm */
 .marquee-track:hover .marquee-content {
   animation-play-state: paused;
 }
 
-/* Mobile: Logo nhỏ hơn, chạy nhanh hơn chút */
 @media (max-width: 768px) {
   .partner-item {
     width: 120px;

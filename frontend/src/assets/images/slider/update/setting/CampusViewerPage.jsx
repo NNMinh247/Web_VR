@@ -6,6 +6,7 @@ import * as THREE from "three";
 import ModelViewer from "./ModelViewer";
 import FirstPersonCamera from "./FirstPersonCamera";
 import "./CampusViewerPage.css";
+import ViewerSettings from "./ViewerSettings";
 
 import { apiUrl, publicUrl } from "../../config/api";
 
@@ -211,6 +212,16 @@ export default function CampusViewerPage({ mode = "3d" }) {
 
   const [campus, setCampus] = useState(location.state?.campus || null);
 
+  const [config, setConfig] = useState({
+    dpr: 1.5,             // Độ nét
+    shadows: true,        // Bật bóng đổ
+    lightIntensity: 1.5,  // Cường độ nắng
+    ambientIntensity: 0.6,// Ánh sáng môi trường
+    sunX: 10,             // Vị trí mặt trời X
+    sunY: 20,             // Vị trí mặt trời Y
+    envBlur: 0.5          // Độ mờ hậu cảnh
+  });
+
   useEffect(() => {
     if (location.state?.campus) setCampus(location.state.campus);
   }, [location.state]);
@@ -315,6 +326,8 @@ export default function CampusViewerPage({ mode = "3d" }) {
         </button>
       </div>
 
+      <ViewerSettings config={config} setConfig={setConfig} />
+
       {isVRPage && (
         <div className="vr-button-container">
           <button className="vr-ui-button" onClick={isXRActive ? stopVR : startVR}>
@@ -369,10 +382,11 @@ export default function CampusViewerPage({ mode = "3d" }) {
         )}
 
         <Canvas
-          shadows
+          shadows = {config.shadows}
+          dpr = {config.dpr}
           camera={{ position: [0, 2, 5], fov: 75 }}
           className="r3f-canvas"
-          gl={{ antialias: true, alpha: false, powerPreference: "high-performance" }}
+          gl={{ antialias: config > 1, alpha: false, powerPreference: "high-performance" }}
           onClick={() => { if (!isVRPage && !isXRActive) setIsLocked(true); }}
           onCreated={({ gl, camera: createdCamera }) => {
             glRef.current = gl;
@@ -401,15 +415,15 @@ export default function CampusViewerPage({ mode = "3d" }) {
             }
           }}
         >
-          <ambientLight intensity={0.6} />
+          <ambientLight intensity={config.ambientIntensity} />
           <directionalLight
-            castShadow
-            position={[10, 20, 15]}
-            intensity={1.5}
+            castShadow={config.shadows}
+            position={[config.sunX, config.sunY, 15]}
+            intensity={config.lightIntensity}
             shadow-mapSize-width={2048}
             shadow-mapSize-height={2048}
           />
-          <Environment preset="park" background blur={0.5} />
+          <Environment preset="park" background blur={config.envBlur} />
 
           <Suspense fallback={<Loader />}>
             <ModelViewer modelUrl={publicUrl(campus.file_name)} />

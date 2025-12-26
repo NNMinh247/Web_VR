@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, {useState, useCallback} from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Home from "./components/Home/Home.jsx";
 import CampusViewerPage from "./components/Campus3D/CampusViewerPage.jsx";
@@ -12,10 +12,10 @@ function AppContent() {
   const location = useLocation();
   const hideChatbot = location.pathname.startsWith("/tour-vr/");
 
-  const [vrOpen, setVrOpen] = React.useState(false);
-  const [xrSession, setXrSession] = React.useState(null);
+  const [vrOpen, setVrOpen] = useState(false);
+  const [xrSession, setXrSession] = useState(null);
 
-  const enterVR = React.useCallback(() => {
+  const enterVR = useCallback(() => {
     if (!navigator.xr) {
       alert("Trình duyệt không hỗ trợ WebXR / VR");
       return;
@@ -38,11 +38,11 @@ function AppContent() {
       });
   }, []);
 
-  const exitVR = React.useCallback(() => {
+  const exitVR = useCallback(() => {
     try {
       xrSession?.end?.();
     } catch {
-      // ignore
+      
     }
     setVrOpen(false);
     setXrSession(null);

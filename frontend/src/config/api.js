@@ -1,7 +1,3 @@
-// Centralized API configuration
-// Vite exposes env vars via import.meta.env.* (typically prefixed with VITE_)
-// CRA used REACT_APP_*; keep fallback for compatibility.
-
 const viteBase = typeof import.meta !== "undefined" ? import.meta.env?.VITE_API_BASE_URL : undefined;
 const craBase = typeof process !== "undefined" ? process.env?.REACT_APP_API_BASE_URL : undefined;
 

@@ -4,8 +4,8 @@
   height: 100vh;
   overflow: hidden;
   background: #000;
-  cursor: grab; /* Con trỏ hình bàn tay */
-  user-select: none; /* Không cho bôi đen chữ khi kéo */
+  cursor: grab;
+  user-select: none;
   touch-action: pan-y;
 }
 
@@ -17,11 +17,10 @@
   width: 100%;
   height: 100vh;
   object-fit: cover;
-  transition: transform 1s ease; /* Hiệu ứng zoom nhẹ khi đổi ảnh */
+  transition: transform 1s ease; 
   pointer-events: none;
 }
 
-/* Hiệu ứng Ken Burns (Zoom chậm) cho ảnh tĩnh */
 .slider-img.static-bg {
   animation: kenburns 30s infinite alternate linear;
 }
@@ -47,7 +46,6 @@
   pointer-events: none;
 }
 
-/* === KHUNG CHỨA TEXT (ĐÃ SỬA LỖI NHẢY) === */
 .slider-text-wrapper {
   position: absolute;
   top: 50%;
@@ -58,21 +56,17 @@
   z-index: 2;
   perspective: 1000px;
 
-  /* QUAN TRỌNG: Dùng Grid để xếp chồng 2 slide lên nhau tại cùng 1 vị trí */
   display: grid;
   grid-template-areas: "stack";
-  align-items: center; /* Căn giữa dọc */
-  justify-items: end;  /* Căn phải ngang */
+  align-items: center; 
+  justify-items: end; 
 }
 
-/* === CARD NỘI DUNG === */
 .slider-content {
-  /* Đặt tất cả slide vào cùng 1 ô lưới để chúng đè lên nhau chuẩn xác */
   grid-area: stack;
-  position: relative; /* Không dùng absolute nữa để tránh mất height */
+  position: relative;
   width: 100%;
   
-  /* Giao diện Card */
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(15px);
   padding: 40px;
@@ -80,55 +74,46 @@
   border-left: 6px solid #c90000;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
   
-  /* Trạng thái mặc định (đang ẩn) */
   opacity: 0;
-  transform: translateX(50px); /* Hơi lệch sang phải */
-  transition: all 0.8s ease;   /* Hiệu ứng mượt cho mọi thay đổi */
-  
+  transform: translateX(50px);
+  transition: all 0.8s ease;
   max-height: 80vh; 
   overflow-y: auto; 
 }
 
-/* Ẩn thanh cuộn nhưng vẫn cuộn được */
 .slider-content::-webkit-scrollbar { width: 0px; background: transparent; }
 
-/* === TRẠNG THÁI HIỂN THỊ (ACTIVE) === */
 .slider-content.active {
   opacity: 1;
-  transform: translateX(0); /* Về đúng vị trí */
+  transform: translateX(0);
   z-index: 2;
 }
 
-/* === ANIMATION RA (Slide cũ biến mất) === */
 .slide-out-left {
   opacity: 0;
-  transform: translateX(-100px); /* Bay sang trái */
+  transform: translateX(-100px);
 }
 
 .slide-out-right {
   opacity: 0;
-  transform: translateX(100px); /* Bay sang phải */
+  transform: translateX(100px);
 }
 
-/* === ANIMATION VÀO (Slide mới xuất hiện) === */
-/* Chuẩn bị vị trí trước khi bay vào */
 .slider-content.incoming.next {
   opacity: 0;
-  transform: translateX(100px); /* Từ bên phải */
+  transform: translateX(100px); 
 }
 
 .slider-content.incoming.prev {
   opacity: 0;
-  transform: translateX(-100px); /* Từ bên trái */
+  transform: translateX(-100px);
 }
 
-/* Kích hoạt bay vào vị trí chuẩn */
 .slider-content.incoming.slide-in {
   opacity: 1;
   transform: translateX(0);
 }
 
-/* === TYPOGRAPHY === */
 .slider-main-title {
   font-size: 2rem;
   color: #c90000; 
@@ -152,7 +137,6 @@
   text-align: justify;
 }
 
-/* Gợi ý kéo thả */
 .drag-hint {
   position: absolute;
   bottom: 30px;

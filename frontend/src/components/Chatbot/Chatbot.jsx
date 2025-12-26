@@ -12,7 +12,6 @@ export default function Chatbot() {
   const [isLoading, setIsLoading] = useState(false);
   const chatBoxRef = useRef(null);
 
-  // Auto scroll
   useEffect(() => {
     if (chatBoxRef.current) {
       chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
@@ -23,13 +22,11 @@ export default function Chatbot() {
     if (!input.trim()) return;
 
     const userText = input;
-    // 1. Hiện tin nhắn user
     setMessages((prev) => [...prev, { role: "user", text: userText }]);
     setInput("");
     setIsLoading(true);
 
     try {
-      // 2. Gửi sang Backend Gemini
       const response = await fetch(apiUrl("api/chat"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -38,7 +35,6 @@ export default function Chatbot() {
 
       const data = await response.json();
       
-      // 3. Hiện phản hồi AI
       if (data.reply) {
         setMessages((prev) => [...prev, { role: "bot", text: data.reply }]);
       } else {

@@ -3,7 +3,6 @@ import "./AdmissionForm.css";
 
 import { apiUrl } from "../../config/api";
 
-// DANH SÁCH NGÀNH ĐÀO TẠO (Cập nhật đầy đủ từ ảnh)
 const MAJORS = [
   "An toàn thông tin (7480202)",
   "An toàn thông tin - Chất lượng cao",
@@ -46,22 +45,18 @@ const AdmissionForm = () => {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Xử lý thay đổi input text
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Xử lý chọn file
   const handleFileChange = (e) => {
     setSelectedFiles(e.target.files);
   };
 
-  // Xử lý Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Kiểm tra xem ngành nhập vào có đúng trong danh sách không (nếu cần bắt buộc)
     if (!MAJORS.includes(formData.major)) {
       alert("Vui lòng chọn một ngành có trong danh sách gợi ý!");
       setIsSubmitting(false);
@@ -166,7 +161,6 @@ const AdmissionForm = () => {
           />
         </div>
 
-        {/* --- PHẦN CHỌN NGÀNH CÓ TÌM KIẾM --- */}
         <div className="form-group">
           <label>Ngành mong muốn xét tuyển:</label>
           <input 
@@ -174,7 +168,7 @@ const AdmissionForm = () => {
             name="major" 
             value={formData.major} 
             onChange={handleChange} 
-            placeholder="Gõ để tìm kiếm (VD: Công nghệ thông tin...)"
+            placeholder="Gõ để tìm kiếm"
             className="major-search-input"
             required
             autoComplete="off"
@@ -185,7 +179,6 @@ const AdmissionForm = () => {
             ))}
           </datalist>
         </div>
-        {/* ------------------------------------- */}
 
         <div className="form-group file-upload-section">
           <label>Hồ sơ đính kèm:</label>

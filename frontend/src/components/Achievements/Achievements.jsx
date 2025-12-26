@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import CountUp from "react-countup"; // Chỉ cần import cái này
+import CountUp from "react-countup";
 import "./Achievements.css";
 import PlaceholderImg from "../../assets/images/slider/slider1.jpg"; 
 import { apiUrl, publicUrl } from "../../config/api";
@@ -26,7 +26,6 @@ function Achievements() {
       <div className="achievements-grid">
         {items.map((item) => (
           <div key={item.id} className="achievement-card">
-            {/* 1. ẢNH MÔ TẢ */}
             <div className="card-image-box">
               <img 
                 src={item.image_url ? publicUrl(item.image_url) : PlaceholderImg} 
@@ -38,22 +37,19 @@ function Achievements() {
             </div>
 
             <div className="card-content">
-              {/* 2. SỐ LIỆU (Đã sửa lỗi) */}
               <div className="achievement-number">
-                {/* Dùng enableScrollSpy thay cho VisibilitySensor */}
                 <span className="prefix">{item.prefix}</span>
                 <span className="val">
                   <CountUp 
                     end={item.number_val} 
                     duration={3} 
-                    enableScrollSpy={true} // Tự động chạy khi lướt tới
-                    scrollSpyOnce={true}   // Chỉ chạy 1 lần
+                    enableScrollSpy={true} 
+                    scrollSpyOnce={true} 
                   />
                 </span>
                 <span className="suffix">{item.suffix}</span>
               </div>
               
-              {/* 3. MÔ TẢ */}
               <p className="achievement-desc">{item.description}</p>
             </div>
           </div>

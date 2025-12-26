@@ -1,11 +1,9 @@
-/* Container chính */
 .achievements-section {
   background: #ffffff;
   padding: 80px 20px;
   position: relative;
 }
 
-/* Tiêu đề mục */
 .section-header-wrapper {
   text-align: center;
   margin-bottom: 60px;
@@ -13,7 +11,7 @@
 
 .section-title-achieve {
   font-size: 2.5rem;
-  color: #c90000; /* Đỏ PTIT */
+  color: #c90000; 
   font-weight: 800;
   text-transform: uppercase;
   margin-bottom: 15px;
@@ -27,39 +25,35 @@
   border-radius: 2px;
 }
 
-/* LƯỚI THẺ BÀI (Grid 3 cột) */
 .achievements-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 cột đều nhau */
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* STYLE TỪNG THẺ (CARD) */
 .achievement-card {
   background: #fff;
   border-radius: 15px;
-  overflow: hidden; /* Bo tròn ảnh theo góc thẻ */
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Bóng mờ nhẹ */
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
   border: 1px solid #f0f0f0;
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
-  height: 100%; /* Để các thẻ cao bằng nhau */
+  height: 100%; 
 }
 
-/* Hiệu ứng khi di chuột vào thẻ */
 .achievement-card:hover {
-  transform: translateY(-10px); /* Nổi lên */
-  box-shadow: 0 15px 40px rgba(201, 0, 0, 0.15); /* Bóng đỏ */
+  transform: translateY(-10px); 
+  box-shadow: 0 15px 40px rgba(201, 0, 0, 0.15);
   border-color: #ffecec;
 }
 
-/* Phần Ảnh */
 .card-image-box {
   width: 100%;
-  height: 220px; /* Chiều cao ảnh cố định */
+  height: 220px; 
   position: relative;
   overflow: hidden;
 }
@@ -67,15 +61,14 @@
 .achievement-img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Đảm bảo ảnh không bị méo */
+  object-fit: cover; 
   transition: transform 0.5s ease;
 }
 
 .achievement-card:hover .achievement-img {
-  transform: scale(1.1); /* Zoom ảnh nhẹ khi hover */
+  transform: scale(1.1);
 }
 
-/* Phần Nội dung bên dưới */
 .card-content {
   padding: 25px;
   text-align: center;
@@ -86,7 +79,6 @@
   justify-content: flex-start;
 }
 
-/* Số liệu to */
 .achievement-number {
   font-size: 3rem;
   font-weight: 800;
@@ -105,7 +97,6 @@
   font-weight: 600;
 }
 
-/* Mô tả */
 .achievement-desc {
   font-size: 1rem;
   color: #333;
@@ -114,7 +105,6 @@
   font-weight: 500;
 }
 
-/* Responsive: Trên điện thoại sẽ chuyển thành 1 cột */
 @media (max-width: 992px) {
   .achievements-grid {
     grid-template-columns: repeat(2, 1fr);

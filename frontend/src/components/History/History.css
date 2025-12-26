@@ -2,20 +2,19 @@
   --ptit-red: #c90000;
 }
 
-/* Ép nền sang màu Trắng */
 .history-section {
   background-color: #ffffff !important; 
   padding: 80px 20px;
   position: relative;
   overflow: hidden;
-  color: #333; /* Chữ đen */
+  color: #333;
 }
 
 .section-title {
   text-align: center;
   font-size: 2.5rem;
   margin-bottom: 80px;
-  color: var(--ptit-red); /* Tiêu đề Đỏ */
+  color: var(--ptit-red);
   text-transform: uppercase;
   letter-spacing: 1px;
   text-shadow: none;
@@ -30,7 +29,6 @@
   flex-direction: column;
 }
 
-/* Đường kẻ dọc màu xám */
 .timeline-line {
   position: absolute;
   left: 50%;
@@ -57,7 +55,6 @@
 .timeline-content, .timeline-empty { width: 45%; }
 .timeline-dot { width: 10%; display: flex; justify-content: center; align-items: center; }
 
-/* Box nội dung: Nền trắng, đổ bóng */
 .timeline-content {
   background: #ffffff;
   padding: 25px;
@@ -94,7 +91,7 @@
 
 .history-desc {
   font-size: 0.95rem;
-  color: #555; /* Chữ xám đậm */
+  color: #555; 
   line-height: 1.6;
   text-align: justify;
 }
@@ -112,7 +109,6 @@
   display: block;
 }
 
-/* Chấm tròn */
 .dot-inner {
   width: 20px;
   height: 20px;

@@ -31,21 +31,11 @@ Desktop.ini
 # Vite
 frontend/.vite/
 
-# Runtime uploads (generated)
 backend/public/user/
 backend/public/uploads/
- 
-# Thêm vài quy tắc gợi ý cho repo ptitedu
-# - Giữ nguyên ignore cho node_modules, build, dist, env logs
-# - Nếu bạn muốn người khác clone cả thư mục upload (thường là không khuyến nghị),
-#   hãy tạo file `.gitkeep` trong các thư mục rỗng và theo dõi file đó.
-# Ví dụ: để giữ `public/uploads/` trong git, chạy:
-#   cd backend/public/uploads && echo "keep" > .gitkeep && git add .gitkeep
 
-# Nếu bạn muốn cho phép commit file `.gitkeep` trong uploads, đảm bảo không ignore nó
 !backend/public/uploads/.gitkeep
 !frontend/public/uploads/.gitkeep
 
-# IDE/editor config
 .vscode/
 .idea/

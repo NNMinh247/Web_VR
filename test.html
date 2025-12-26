@@ -1,1 +1,153 @@
-Đề là sửa chức năng bay lên
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        FirstPerson
+        <!-- import { useFrame, useThree } from "@react-three/fiber";
+import { useEffect, useRef } from "react";
+import * as THREE from "three";
+
+const SPEED = 0.15;
+const FLY_SPEED = 0.15; 
+const MIN_HEIGHT = 0; 
+const START_POS = [0, 0, 5]; 
+
+export default function FirstPersonCamera({ active, playerRef }) {
+  const { camera } = useThree();
+  const keys = useRef({ 
+    w: false, a: false, s: false, d: false, 
+    e: false, r: false, " ": false 
+  });
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      const key = e.key.toLowerCase();
+      if (keys.current[key] !== undefined) keys.current[key] = true;
+    };
+    const handleKeyUp = (e) => {
+      const key = e.key.toLowerCase();
+      if (keys.current[key] !== undefined) keys.current[key] = false;
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
+    };
+  }, []);
+
+  useFrame(() => {
+    if (!active) return;
+
+    const target = playerRef?.current || camera;
+
+    if (keys.current[" "]) {
+      target.position.set(...START_POS);
+      return; // Reset xong thì không di chuyển nữa trong frame này
+    }
+
+    const direction = new THREE.Vector3();
+    const frontVector = new THREE.Vector3(
+      0,
+      0,
+      Number(keys.current.s) - Number(keys.current.w)
+    );
+    const sideVector = new THREE.Vector3(
+      Number(keys.current.a) - Number(keys.current.d),
+      0,
+      0
+    );
+
+    direction
+      .subVectors(frontVector, sideVector)
+      .normalize()
+      .multiplyScalar(SPEED)
+      .applyEuler(camera.rotation);
+
+    direction.y = 0; 
+    
+    target.position.add(direction);
+
+    if (keys.current.e) {
+      target.position.y += FLY_SPEED;
+    }
+    if (keys.current.r) {
+      target.position.y -= FLY_SPEED;
+    }
+
+    if (target.position.y < MIN_HEIGHT) {
+      target.position.y = MIN_HEIGHT;
+    }
+  });
+
+  return null;
+} -->
+
+<!-- 
+      {!isVRPage && (
+      <div className="controls-panel">
+        <h4 className="controls-title">HƯỚNG DẪN</h4>
+        
+        {/* Nhóm Di chuyển */}
+        <div className="control-group">
+          <div className="keys-layout">
+            <div className="key-row">
+              <div className="key-cap">E</div>
+            </div>
+            <div className="key-row">
+              <div className="key-cap">W</div>
+            </div>
+            <div className="key-row">
+              <div className="key-cap">A</div>
+              <div className="key-cap">S</div>
+              <div className="key-cap">D</div>
+            </div>
+            <div className="key-row">
+              <div className="key-cap">R</div>
+            </div>
+          </div>
+          <span className="control-label">
+            WASD: Đi lại<br/>
+            E: Bay lên<br/>
+            R: Hạ xuống
+          </span>
+        </div>
+
+        <div className="divider"></div>
+
+        <div className="control-group horizontal">
+          <div className="key-cap wide">SPACE</div>
+          <span className="control-label">Về vị trí đầu</span>
+        </div>
+
+        <div className="divider"></div>
+
+        <div className="control-group horizontal">
+          <div className="icon-box"><i className="bi bi-mouse"></i></div>
+          <span className="control-label">Xoay góc nhìn</span>
+        </div>
+
+        <div className="divider"></div>
+
+        <div className="control-group horizontal">
+          <div className="key-cap wide">ESC</div>
+          <span className="control-label">Hiện chuột</span>
+        </div>
+      </div>
+      )} -->
+
+      
+
+      <!-- git pull origin main
+      git stash       # Cất code đang làm dở đi
+      git pull origin main  # Kéo code mới về
+      git stash pop   # Lôi code dở của bạn ra lại để làm tiếp -->
+    </p>
+</body>
+</html>

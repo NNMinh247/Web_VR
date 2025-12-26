@@ -344,6 +344,23 @@ export default function CampusViewerPage({ mode = "3d" }) {
 
         <div className="divider"></div>
 
+        <div className="control-group">
+          <div className="key-row">
+            <div className="key-cap">E</div>
+            <div className="key-cap">R</div>
+          </div>
+          <span className="control-label">Bay Lên / Hạ Xuống</span>
+        </div>
+
+        <div className="divider"></div>
+
+        <div className="control-group">
+          <div className="key-cap space">Space</div>
+          <span className="control-label">Về vị trí đầu</span>
+        </div>
+
+        <div className="divider"></div>
+
         <div className="control-group horizontal">
           <div className="icon-box"><i className="bi bi-mouse"></i></div>
           <span className="control-label">Xoay góc nhìn</span>
